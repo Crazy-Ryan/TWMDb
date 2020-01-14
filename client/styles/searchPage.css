@@ -54,6 +54,29 @@ header input {
     margin-top: 20px;
 }
 
+.searchResult .picAndDetail {
+    margin: 20px;
+    display: flex;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray
+}
+
+.picAndDetail img {
+    display: block;
+    width: 150px;
+    margin-right: 30px;
+    margin: 10px;
+}
+
+.movie-details p {
+    height: 30px;
+    margin: 10px;
+}
+
+.movie-details :nth-child(1) {
+    font-size: 20px;
+}
+
 
 /* footer */
 
