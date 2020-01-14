@@ -57,7 +57,8 @@ header input {
 
 .content .movie-informations,
 .content .movie-comments,
-.content .movie-summary {
+.content .movie-summary,
+.content .movie-recommend {
     margin-top: 20px;
 }
 
@@ -98,6 +99,22 @@ header input {
 .user-comment :nth-child(3) {
     color: rgb(178, 170, 170);
     font-size: 13px;
+}
+
+.recommend-information {
+    display: flex;
+    margin-top: 20px;
+}
+
+.one-movie-recommend img {
+    width: 100px;
+    height: 130px;
+    margin: 0 10px 0 10px;
+}
+
+.one-movie-recommend p {
+    font-size: 12px;
+    text-align: center;
 }
 
 
