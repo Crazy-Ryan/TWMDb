@@ -1,29 +1,72 @@
 let localStorage = window.localStorage;
+let sessionStorage = window.sessionStorage;
 let newTop250Db = [];
 
 function getTop250() {
-  get250Interval(1, 101);
-  get250Interval(101, 201);
-  get250Interval(201, 250);
-};
-
-function get250Interval(start, end) {
-  let BASIC_URL = 'http://127.0.0.1:8888';
-  let AJAXSetup = {
-    url: `${BASIC_URL}/v2/movie/top250?start=${start - 1}&count=${end - start + 1}`,
-    method: 'GET',
-    success: function (result) {
-      newTop250Db = newTop250Db.concat(result.subjects);
-      writeTop250ToStorage();
-    }
-  }
-  AJAXHandle(AJAXSetup);
+  let promiseObj = new Promise(function (resolve, reject) {
+    get250Interval(1, 100)
+      .then(() => get250Interval(101, 200))
+      .then(() => get250Interval(201, 250))
+      .then(() => {
+        writeDbToStorage();
+        resolve();
+      });
+  });
+  return promiseObj;
 }
 
-function writeTop250ToStorage(){
-  if (250 === newTop250Db.length){
-    localStorage.setItem('newTop250',JSON.stringify(newTop250Db));
+
+function get250Interval(start, end) {
+  let promiseObj = new Promise(function (resolve, reject) {
+    let BASIC_URL = 'http://127.0.0.1:8888';
+    let AJAXSetup = {
+      url: `${BASIC_URL}/v2/movie/top250?start=${start - 1}&count=${end - start + 1}`,
+      method: 'GET',
+      success: function (result) {
+        newTop250Db = newTop250Db.concat(result.subjects);
+        resolve();
+      }
+    }
+    AJAXHandle(AJAXSetup);
+  });
+  return promiseObj;
+}
+
+function initDb(func) {
+  functionToRun = func || function (result) { };
+  if (!(localStorage.getItem('onServiceTop250'))) {
+    getTop250().then(() => {
+      copyNewDbToOnServiceDb();
+      setSessionActiveStatus();
+      console.log('finish init database');
+      console.log('start to render the page');
+      functionToRun;
+      console.log('finish rendering the page');
+    });
   }
+  else {
+    if(!(sessionStorage.getItem('session-active'))){
+      setSessionActiveStatus();
+      console.log('renew the on service database')
+      copyNewDbToOnServiceDb();
+    }
+    functionToRun;
+    console.log('start to render the page');
+    console.log('start to fetch new top 250');
+    getTop250();
+  }
+}
+
+function writeDbToStorage() {
+  localStorage.setItem('newTop250', JSON.stringify(newTop250Db));
+}
+
+function copyNewDbToOnServiceDb() {
+  localStorage.setItem('onServiceTop250', localStorage.getItem('newTop250'));
+}
+
+function setSessionActiveStatus() {
+  sessionStorage.setItem('session-active', true);
 }
 
 function AJAXHandle(options) {
