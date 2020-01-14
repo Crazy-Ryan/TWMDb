@@ -12,17 +12,20 @@
 <body>
     <header>
         <div class="logo-font">TWMDb</div>
-        <input type="search" name="search" placeholder="Search" />
-        <img class="icon-search" src="../static/img/search.png" alt="search" />
+        <input id="search-movie" type="search" name="search" placeholder="Search" onkeydown="keyEnterSearchProject(event)" />
+        <!-- onkeydown="searchProject() -->
+        <img class="icon-search" src="../static/img/search.png" alt="search" onclick="searchProject()" />
     </header>
     <container>
-        <div class="content">
+        <div class=" content ">
         </div>
 
     </container>
     <footer>
-        <div class="copyright-font">Copyright©2020 TWMDb.All Rights Reserved.</div>
+        <div class="copyright-font ">Copyright©2020 TWMDb.All Rights Reserved.</div>
     </footer>
 </body>
+<script src="../scripts/ajax.js "></script>
+<script src="../scripts/searchPage.js "></script>
 
 </html>

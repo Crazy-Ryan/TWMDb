@@ -45,9 +45,13 @@ header input {
 /* container */
 
 .content {
-    margin: 20px 60px 20px 60px;
-    height: 1000px;
+    margin: 20px 80px 20px 80px;
+    height: 800px;
     background-color: rosybrown;
+}
+
+.content .searchResult {
+    margin-top: 20px;
 }
 
 
