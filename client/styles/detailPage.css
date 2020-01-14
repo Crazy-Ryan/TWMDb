@@ -44,11 +44,44 @@ header input {
 
 /* container */
 
+.content {
+    height: 1000px;
+    /* background-color: goldenrod; */
+    margin: 20px 60px 20px 60px;
+}
+
+.content .movie-informations {
+    margin-top: 20px;
+    display: flex;
+}
+
+.content img {
+    width: 200px;
+}
+
+.content .movie-details {
+    margin-left: 30px;
+}
+
+.movie-details p {
+    height: 30px;
+    margin: 10px;
+}
+
+.movie-summary {
+    margin-top: 20px;
+}
+
+.movie-summary p {
+    margin-top: 10px;
+    text-indent: 2em;
+}
+
 
 /* footer */
 
 footer {
-    position: absolute;
+    position: relative;
     bottom: 0;
 }
 
