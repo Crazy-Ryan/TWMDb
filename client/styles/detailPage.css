@@ -46,7 +46,6 @@ header input {
 
 .content {
     height: 1000px;
-    /* background-color: goldenrod; */
     margin: 20px 60px 20px 60px;
 }
 
@@ -55,12 +54,19 @@ header input {
     display: flex;
 }
 
-.content img {
-    width: 200px;
+.content h3 {
+    width: 100px;
+    text-align: center;
+    color: white;
+    background-color: cornflowerblue;
 }
 
 .content .movie-details {
     margin-left: 30px;
+}
+
+.content img {
+    width: 200px;
 }
 
 .movie-details p {
@@ -77,13 +83,34 @@ header input {
     text-indent: 2em;
 }
 
+.movie-comments {
+    margin-top: 20px;
+}
+
+.user-comment {
+    margin: 15px 0 15px 0;
+}
+
+.user-comment :nth-child(1) {
+    color: rgb(110, 119, 170);
+}
+
+.user-comment :nth-child(2) {
+    margin: 0 20px 0 20px;
+    color: rgb(255, 173, 46);
+}
+
+.user-comment :nth-child(3) {
+    color: rgb(178, 170, 170);
+    font-size: 13px;
+}
+
+.user-comment p {
+    /* text-indent: 2em; */
+}
+
 
 /* footer */
-
-footer {
-    position: relative;
-    bottom: 0;
-}
 
 .copyright-font {
     color: white;

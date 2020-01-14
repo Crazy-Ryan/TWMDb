@@ -48,4 +48,46 @@ function loadMovieDetail(data) {
 }
 
 
+//影评
+function getMovieReviews() {
+    let options = {
+        url: BASIC_URL + '/v2/movie/subject/' + movieId + '/comments?start=1&count=100',
+        method: 'GET',
+        success: function(res) {
+            loadMovieReviews(res);
+        },
+        fail: function(error) {
+            console.log('ERROR');
+        }
+    }
+    ajax(options);
+}
+
+function loadMovieReviews(data) {
+    let comments = data.comments.slice(0, 5); //[{},{}]
+    movieDetail.innerHTML += `
+    <div class="movie-comments">
+  <h3>电影热评</h3>
+  <div class="user-comments"></div>
+  </div>
+  `;
+    // console.log(movieDetail.innerHTML);
+    let movieComments = document.getElementsByClassName('movie-comments')[0];
+    comments.forEach(element => {
+        movieComments.innerHTML += `
+      <div class='user-comment'>
+      <span>${element.author.name}</span>
+      <span>${ratingToStar(element.rating.value)}</span>
+      <span> ${element.created_at.split(' ')[0]}</span>
+      <p>${element.content}</p>
+      </div>`;
+    }); // 
+    // console.log('2222222222222');
+}
+
+function ratingToStar(num) {
+    return "★".repeat(num) + "☆".repeat(5 - num);
+}
+
 getMovieData();
+getMovieReviews();
