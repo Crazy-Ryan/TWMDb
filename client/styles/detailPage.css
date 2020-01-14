@@ -7,7 +7,11 @@ body {
     height: 100%;
 }
 
-header {
+
+/* header */
+
+header,
+footer {
     width: 100%;
     height: 50px;
     background-color: black;
@@ -35,4 +39,22 @@ header input {
     top: 15px;
     right: 20px;
     width: 20px;
+}
+
+
+/* container */
+
+
+/* footer */
+
+footer {
+    position: absolute;
+    bottom: 0;
+}
+
+.copyright-font {
+    color: white;
+    font-size: 12px;
+    text-align: center;
+    line-height: 50px;
 }
