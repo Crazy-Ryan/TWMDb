@@ -1,6 +1,8 @@
 const BASIC_URL = 'http://127.0.0.1:8888';
 let movieId = '26942674';
-let movieDetail = document.getElementsByClassName('content')[0];
+let movieInformations = document.getElementsByClassName('movie-informations')[0];
+let movieSummarys = document.getElementsByClassName('movie-summary')[0];
+let movieComments = document.getElementsByClassName('movie-comments')[0];
 
 function getMovieData() {
     let options = {
@@ -34,8 +36,9 @@ function loadMovieDetail(data) {
     let movieRating = data.rating; //{max: avg:stars: min:}
     //剧情简介
     let movieSummary = data.summary;
-    movieDetail.innerHTML += `<h2>${movieTitle}——${movieOriginalTitle}</h2>
-    <div class="movie-informations">
+
+    movieInformations.innerHTML = `<h2>${movieTitle}——${movieOriginalTitle}</h2>
+    <div class="picAndDetail">
     <img src="${movieImages.small}" />
     <div class="movie-details">
     <p>导演：${movieDirectors}</p>
@@ -43,8 +46,8 @@ function loadMovieDetail(data) {
     <p>类型：${movieGenres}</p>
     <p>制片国家/地区：${movieCountries}</p>
     <p>上映日期：${movieYear}</p>
-    <p>评分：${movieRating.average}</p></div></div>
-    <div class="movie-summary"><h3>剧情简介</h3><p>${movieSummary}</p></div>`;
+    <p>评分：${movieRating.average}</p></div></div>`;
+    movieSummarys.innerHTML = `<h3>剧情简介</h3><p>${movieSummary}</p>`;
 }
 
 
@@ -65,24 +68,18 @@ function getMovieReviews() {
 
 function loadMovieReviews(data) {
     let comments = data.comments.slice(0, 5); //[{},{}]
-    movieDetail.innerHTML += `
-    <div class="movie-comments">
-  <h3>电影热评</h3>
-  <div class="user-comments"></div>
-  </div>
-  `;
-    // console.log(movieDetail.innerHTML);
-    let movieComments = document.getElementsByClassName('movie-comments')[0];
+    movieComments.innerHTML += `<h3>电影热评</h3>
+    <div class="user-comments"></div>`;
+    let userComments = document.getElementsByClassName('user-comments')[0];
     comments.forEach(element => {
-        movieComments.innerHTML += `
+        userComments.innerHTML += `
       <div class='user-comment'>
       <span>${element.author.name}</span>
       <span>${ratingToStar(element.rating.value)}</span>
       <span> ${element.created_at.split(' ')[0]}</span>
       <p>${element.content}</p>
       </div>`;
-    }); // 
-    // console.log('2222222222222');
+    });
 }
 
 function ratingToStar(num) {

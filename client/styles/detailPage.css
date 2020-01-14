@@ -45,13 +45,7 @@ header input {
 /* container */
 
 .content {
-    height: 1000px;
     margin: 20px 60px 20px 60px;
-}
-
-.content .movie-informations {
-    margin-top: 20px;
-    display: flex;
 }
 
 .content h3 {
@@ -61,12 +55,21 @@ header input {
     background-color: cornflowerblue;
 }
 
-.content .movie-details {
-    margin-left: 30px;
+.content .movie-informations,
+.content .movie-comments,
+.content .movie-summary {
+    margin-top: 20px;
 }
 
-.content img {
+.movie-informations img {
+    display: block;
     width: 200px;
+    margin-right: 30px;
+}
+
+.movie-informations .picAndDetail {
+    margin-top: 20px;
+    display: flex;
 }
 
 .movie-details p {
@@ -74,17 +77,9 @@ header input {
     margin: 10px;
 }
 
-.movie-summary {
-    margin-top: 20px;
-}
-
 .movie-summary p {
     margin-top: 10px;
     text-indent: 2em;
-}
-
-.movie-comments {
-    margin-top: 20px;
 }
 
 .user-comment {
@@ -103,10 +98,6 @@ header input {
 .user-comment :nth-child(3) {
     color: rgb(178, 170, 170);
     font-size: 13px;
-}
-
-.user-comment p {
-    /* text-indent: 2em; */
 }
 
 
