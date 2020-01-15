@@ -1,34 +1,16 @@
+let movieDb;
 let content = document.getElementsByClassName('content')[0];
-let moviesTest = [{
-    "title": "\u8096\u7533\u514b\u7684\u6551\u8d4e",
-    "rating": 9.7,
-    "genres": ["\u72af\u7f6a", "\u5267\u60c5"],
-    "images": "http://img3.doubanio.com\/view\/photo\/s_ratio_poster\/public\/p480747492.jpg",
-    "casts": ["\u8482\u59c6\u00b7\u7f57\u5bbe\u65af", "\u6469\u6839\u00b7\u5f17\u91cc\u66fc", "\u9c8d\u52c3\u00b7\u5188\u987f"],
-    "directors": ["\u5f17\u5170\u514b\u00b7\u5fb7\u62c9\u90a6\u7279"],
-}];
-initDb();
-let movieTop250 = readOnServiceDb();
+
+function fetchDataFromLocalStorage() {
+    movieDb = readOnServiceDb();
+}
 
 function searchProject() {
-    let x = document.getElementById("search-movie").value;
-    content.innerHTML = `<h2>搜索：${x}</h2>`;
-    // let hasMovie;
-    // let searchMovieId = [];
-    // for (let i = 0; i < moviesTest.length; i++) {
-    //     if (moviesTest[i].title.search(x) !== -1) {
-    //         searchMovieId.push(i);
-    //         hasMovie = true;
-    //         break;
-    //     } else {
-    //         hasMovie = false;
-    //     }
-    // }
-    let searchMovieId = itemSearch(movieTop250, x);
+    let inputValue = document.getElementById("search-movie").value;
+    content.innerHTML = `<h2>搜索：${inputValue}</h2>`;
+    let searchMovieId = itemSearch(movieDb, inputValue);
     let searchMovie = movieSearch(searchMovieId);
-    console.log(searchMovieId);
-    console.log(searchMovie);
-    if (x && searchMovie) {
+    if (inputValue && searchMovie.length !== 0) {
         searchMovie.forEach(item => {
             content.innerHTML += `<div class="searchResult">
             <div class="picAndDetail">
@@ -42,7 +24,7 @@ function searchProject() {
       </div></div></div>`;
         });
     } else {
-        content.innerHTML += `<div class="searchResult">没有找到关于"${x}"的电影，换个搜索词试试吧~</div>`;
+        content.innerHTML += `<div class="searchResult">没有找到关于"${inputValue}"的电影，换个搜索词试试吧~</div>`;
     }
 }
 
@@ -53,6 +35,7 @@ function keyEnterSearchProject(event) {
 }
 
 function movieSearch(searchMovieId) {
-    let res = movieTop250.filter(movie => (searchMovieId.indexOf(movie.id) !== -1));
+    let res = movieDb.filter(movie => (searchMovieId.indexOf(movie.id) !== -1));
     return res;
 }
+initDb(fetchDataFromLocalStorage);
