@@ -32,7 +32,7 @@ function searchProject() {
         searchMovie.forEach(item => {
             content.innerHTML += `<div class="searchResult">
             <div class="picAndDetail">
-            <a href="../pages/detailPage.html?${item.id}"><img src="${item.images.small}" /></a>
+            <a href="../pages/detailPage.html?${item.id}" target="_blank"><img src="${item.images.small}" /></a>
             <div class="movie-details">
             <p>${item.title}</p>
             <p>导演：${item.directors.map(item => item.name).join(',')}</p>

@@ -7,8 +7,6 @@ let movieSummarys = document.getElementsByClassName('movie-summary')[0];
 let movieComments = document.getElementsByClassName('movie-comments')[0];
 let movieRecommend = document.getElementsByClassName('recommend-information')[0];
 
-
-
 function fetchDataFromLocalStorage() {
     classificationDb = readDbClassification();
     movieDb = readOnServiceDb();
@@ -30,16 +28,10 @@ function getMovieData() {
 
 
 function loadMovieDetail(data) {
-    // let movieTitle = data.title;
-    // let movieOriginalTitle = data.original_title;
-    // let movieYear = data.year;
-    // let movieImages = data.images;
     let movieDirectors = data.directors.map(item => item.name).join(',');
     let movieCasts = data.casts.map(item => item.name).join(',');
     let movieGenres = data.genres.join(',');
     let movieCountries = data.countries.join(',');
-    // let movieRating = data.rating;
-    // let movieSummary = data.summary;
 
     movieInformations.innerHTML = `<h2>${data.title}——${data.original_title}</h2>
     <div class="picAndDetail">
