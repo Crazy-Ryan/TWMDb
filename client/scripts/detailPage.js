@@ -5,6 +5,8 @@ let movieInformations = document.getElementsByClassName('movie-informations')[0]
 let movieSummarys = document.getElementsByClassName('movie-summary')[0];
 let movieComments = document.getElementsByClassName('movie-comments')[0];
 let movieRecommend = document.getElementsByClassName('recommend-information')[0];
+// initDb();
+// let movieTop250 = readOnServiceDb();
 
 function getMovieData() {
     let options = {
@@ -17,7 +19,7 @@ function getMovieData() {
             console.log('ERROR');
         }
     }
-    ajax(options);
+    AJAXHandle(options);
 }
 
 
@@ -26,10 +28,8 @@ function loadMovieDetail(data) {
     let movieOriginalTitle = data.original_title;
     let movieYear = data.year;
     let movieImages = data.images;
-    let movieDirectors = data.directors;
-    let movieCasts = data.casts;
-    movieDirectors = data.directors.map(item => item.name).join(',');
-    movieCasts = data.casts.map(item => item.name).join(',');
+    let movieDirectors = data.directors.map(item => item.name).join(',');
+    let movieCasts = data.casts.map(item => item.name).join(',');
     let movieGenres = data.genres.join(',');
     let movieCountries = data.countries.join(',');
     let movieRating = data.rating;
@@ -59,7 +59,7 @@ function getMovieReviews() {
             console.log('ERROR');
         }
     }
-    ajax(options);
+    AJAXHandle(options);
 }
 
 function loadMovieReviews(data) {
@@ -93,7 +93,7 @@ function getMovieRecommendData(id) {
             console.log('ERROR');
         }
     }
-    ajax(options);
+    AJAXHandle(options);
 }
 
 function loadMovieRecommend(data) {
