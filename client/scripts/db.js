@@ -52,6 +52,7 @@ function initDb(func) {
     getTop250().then(() => {
       writeDbToStorage();
       overwriteOnServiceDbWithNewDb();
+      writeClassificationResultToStorage();
       setSessionActiveStatus();
       console.log('finish init database');
       console.log('start to render the page');
@@ -64,6 +65,7 @@ function initDb(func) {
       setSessionActiveStatus();
       console.log('renew the on service database')
       overwriteOnServiceDbWithNewDb();
+      writeClassificationResultToStorage();
     }
     functionToRun();
     console.log('start to render the page');
@@ -79,6 +81,10 @@ function writeDbToStorage() {
   localStorage.setItem('newTop250', JSON.stringify(newTop250Db));
 }
 
+function writeClassificationResultToStorage() {
+  localStorage.setItem('classification', JSON.stringify(classifyMovies(readOnServiceDb())));
+}
+
 function overwriteOnServiceDbWithNewDb() {
   localStorage.setItem('onServiceTop250', localStorage.getItem('newTop250'));
 }
@@ -91,28 +97,44 @@ function readOnServiceDb() {
   return JSON.parse(localStorage.getItem('onServiceTop250'));
 }
 
+function readDbClassification() {
+  return JSON.parse(localStorage.getItem('classification'));
+}
+
 function classifyMovies(collection) {
 
   return collection.reduce((catagoryCollection, item) => {
     item.genres.forEach((catagory) => {
-      if (catagory in catagoryCollection) {
-        catagoryCollection[catagory].push(item.id)
+      if (matchObj = searchInObjArray(catagoryCollection, catagory)) {
+        matchObj.id.push(item.id);
       }
       else {
-        catagoryCollection[catagory] = [item.id];
+        let cataObj = {};
+        cataObj.name = catagory;
+        cataObj.id = [item.id];
+        catagoryCollection.push(cataObj);
       }
     })
     return catagoryCollection;
   }, []);
 }
 
-function itemSearch(collection,textToSearch){
-  return collection.reduce((matchCollection,item)=>{
-    if(-1 !==(item.title.search(textToSearch))){
+function searchInObjArray(objArray, objname) {
+  for (let index = 0; index < objArray.length; index++) {
+    if (objname === objArray[index].name) {
+      return objArray[index];
+    }
+  }
+  return false;
+}
+
+function itemSearch(collection, textToSearch) {
+  return collection.reduce((matchCollection, item) => {
+    if (-1 !== (item.title.search(textToSearch))) {
       matchCollection.push(item.id);
     }
     return matchCollection;
-  },[])
+  }, [])
 }
 
 function AJAXHandle(options) {
