@@ -93,7 +93,7 @@ function readOnServiceDb() {
 
 function classifyMovies(collection) {
 
-  var instanceCount = collection.reduce((catagoryCollection, item) => {
+  return collection.reduce((catagoryCollection, item) => {
     item.genres.forEach((catagory) => {
       if (catagory in catagoryCollection) {
         catagoryCollection[catagory].push(item.id)
@@ -104,7 +104,15 @@ function classifyMovies(collection) {
     })
     return catagoryCollection;
   }, []);
-  return instanceCount;
+}
+
+function itemSearch(collection,textToSearch){
+  return collection.reduce((matchCollection,item)=>{
+    if(-1 !==(item.title.search(textToSearch))){
+      matchCollection.push(item.id);
+    }
+    return matchCollection;
+  },[])
 }
 
 function AJAXHandle(options) {
