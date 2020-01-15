@@ -1,12 +1,18 @@
 const BASIC_URL = 'http://127.0.0.1:8888';
-let movieId = '26942674';
-let recommendMovieIdList = ['1308779', '1292052', '1291546', '1295644', '1292063', '1291561'];
+let movieId = window.location.search.slice(1);
+let movieDb;
+let classificationDb;
 let movieInformations = document.getElementsByClassName('movie-informations')[0];
 let movieSummarys = document.getElementsByClassName('movie-summary')[0];
 let movieComments = document.getElementsByClassName('movie-comments')[0];
 let movieRecommend = document.getElementsByClassName('recommend-information')[0];
-// initDb();
-// let movieTop250 = readOnServiceDb();
+
+
+
+function fetchDataFromLocalStorage() {
+    classificationDb = readDbClassification();
+    movieDb = readOnServiceDb();
+}
 
 function getMovieData() {
     let options = {
@@ -24,28 +30,28 @@ function getMovieData() {
 
 
 function loadMovieDetail(data) {
-    let movieTitle = data.title;
-    let movieOriginalTitle = data.original_title;
-    let movieYear = data.year;
-    let movieImages = data.images;
+    // let movieTitle = data.title;
+    // let movieOriginalTitle = data.original_title;
+    // let movieYear = data.year;
+    // let movieImages = data.images;
     let movieDirectors = data.directors.map(item => item.name).join(',');
     let movieCasts = data.casts.map(item => item.name).join(',');
     let movieGenres = data.genres.join(',');
     let movieCountries = data.countries.join(',');
-    let movieRating = data.rating;
-    let movieSummary = data.summary;
+    // let movieRating = data.rating;
+    // let movieSummary = data.summary;
 
-    movieInformations.innerHTML = `<h2>${movieTitle}——${movieOriginalTitle}</h2>
+    movieInformations.innerHTML = `<h2>${data.title}——${data.original_title}</h2>
     <div class="picAndDetail">
-    <img src="${movieImages.small}" />
+    <img src="${data.images.small}" />
     <div class="movie-details">
     <p>导演：${movieDirectors}</p>
     <p>主演：${movieCasts}</p>
     <p>类型：${movieGenres}</p>
     <p>制片国家/地区：${movieCountries}</p>
-    <p>上映日期：${movieYear}</p>
-    <p>评分：${movieRating.average}</p></div></div>`;
-    movieSummarys.innerHTML = `<h3>剧情简介</h3><p>${movieSummary}</p>`;
+    <p>上映日期：${data.year}</p>
+    <p>评分：${data.rating.average}</p></div></div>`;
+    movieSummarys.innerHTML = `<h3>剧情简介</h3><p>${data.summary}</p>`;
 }
 
 function getMovieReviews() {
@@ -82,21 +88,10 @@ function ratingToStar(num) {
     return "★".repeat(num) + "☆".repeat(5 - num);
 }
 
-function getMovieRecommendData(id) {
-    let options = {
-        url: BASIC_URL + '/v2/movie/subject/' + id,
-        method: 'GET',
-        success: function(res) {
-            loadMovieRecommend(res);
-        },
-        fail: function(error) {
-            console.log('ERROR');
-        }
-    }
-    AJAXHandle(options);
-}
-
-function loadMovieRecommend(data) {
+function loadMovieRecommend(movieId) {
+    let data = movieDb.filter(
+        item => (item.id === movieId)
+    )[0];
     let movieTitle = data.title;
     let movieRating = data.rating.average;
     let movieImages = data.images.small;
@@ -108,6 +103,25 @@ function loadMovieRecommend(data) {
     </div>`;
 }
 
+function getMovieRecommendId(movieId) {
+    let data = movieDb.filter(
+        item => (item.id === movieId)
+    );
+    let recommendData = classificationDb.filter(
+        item => (item.name === data[0].genres[0])
+    );
+    return recommendData[0].id.slice(0, 6);
+
+}
+
+function getMovieRecommends() {
+    let recommendMovieIdList = getMovieRecommendId(movieId);
+    recommendMovieIdList.forEach(
+        item => loadMovieRecommend(item)
+    );
+}
+
+initDb(fetchDataFromLocalStorage);
 getMovieData();
 getMovieReviews();
-recommendMovieIdList.forEach(item => getMovieRecommendData(item));
+getMovieRecommends();
