@@ -88,7 +88,23 @@ function setSessionActiveStatus() {
 }
 
 function readOnServiceDb() {
-  return localStorage.getItem('onServiceTop250');
+  return JSON.parse(localStorage.getItem('onServiceTop250'));
+}
+
+function classifyMovies(collection) {
+
+  var instanceCount = collection.reduce((catagoryCollection, item) => {
+    item.genres.forEach((catagory) => {
+      if (catagory in catagoryCollection) {
+        catagoryCollection[catagory].push(item.id)
+      }
+      else {
+        catagoryCollection[catagory] = [item.id];
+      }
+    })
+    return catagoryCollection;
+  }, []);
+  return instanceCount;
 }
 
 function AJAXHandle(options) {
