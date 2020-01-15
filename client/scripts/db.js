@@ -4,15 +4,31 @@ let newTop250Db = [];
 
 function getTop250() {
   let promiseObj = new Promise(function (resolve, reject) {
-    get250Interval(1, 100)
-      .then(() => get250Interval(101, 200))
-      .then(() => get250Interval(201, 250))
-      .then(() => {
-        writeDbToStorage();
-        resolve();
+    const segmentCount = 5;
+    let receiveCount = 0;
+    let segmentCollection = Array(segmentCount);
+    for (let index = 0; index < segmentCount; index++) {
+      let start, end;
+      [start, end] = countCal(segmentCount, index, 250);
+      get250Interval(start, end).then((array) => {
+        segmentCollection[index] = array;
+        receiveCount++;
+        if (segmentCount === receiveCount ) {
+          console.log('finish_collection');
+          newTop250Db = segmentCollection.flat();
+          console.log(newTop250Db);
+          resolve();
+        }
       });
+    }
   });
   return promiseObj;
+}
+
+function countCal(segmentCount, index, num) {
+  let start = (num / segmentCount) * index + 1;
+  let end = (num / segmentCount) * (index + 1);
+  return [start, end];
 }
 
 
@@ -23,8 +39,7 @@ function get250Interval(start, end) {
       url: `${BASIC_URL}/v2/movie/top250?start=${start - 1}&count=${end - start + 1}`,
       method: 'GET',
       success: function (result) {
-        newTop250Db = newTop250Db.concat(result.subjects);
-        resolve();
+        resolve(result.subjects);
       }
     }
     AJAXHandle(AJAXSetup);
@@ -36,6 +51,7 @@ function initDb(func) {
   functionToRun = func || function (result) { };
   if (!(localStorage.getItem('onServiceTop250'))) {
     getTop250().then(() => {
+      writeDbToStorage();
       copyNewDbToOnServiceDb();
       setSessionActiveStatus();
       console.log('finish init database');
@@ -45,7 +61,7 @@ function initDb(func) {
     });
   }
   else {
-    if(!(sessionStorage.getItem('session-active'))){
+    if (!(sessionStorage.getItem('session-active'))) {
       setSessionActiveStatus();
       console.log('renew the on service database')
       copyNewDbToOnServiceDb();
