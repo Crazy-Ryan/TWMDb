@@ -51,7 +51,7 @@ function initDb(func) {
   if (!readOnServiceDb()) {
     getTop250().then(() => {
       writeDbToStorage();
-      copyNewDbToOnServiceDb();
+      overwriteOnServiceDbWithNewDb();
       setSessionActiveStatus();
       console.log('finish init database');
       console.log('start to render the page');
