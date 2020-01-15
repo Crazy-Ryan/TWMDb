@@ -8,12 +8,11 @@ function getTop250() {
     let receiveCount = 0;
     let segmentCollection = Array(segmentCount);
     for (let index = 0; index < segmentCount; index++) {
-      let start, end;
-      [start, end] = countCal(segmentCount, index, 250);
+      let [start, end] = countCal(segmentCount, index, 250);
       get250Interval(start, end).then((array) => {
         segmentCollection[index] = array;
         receiveCount++;
-        if (segmentCount === receiveCount ) {
+        if (segmentCount === receiveCount) {
           console.log('finish_collection');
           newTop250Db = segmentCollection.flat();
           console.log(newTop250Db);
@@ -49,7 +48,7 @@ function get250Interval(start, end) {
 
 function initDb(func) {
   functionToRun = func || function () { };
-  if (!(localStorage.getItem('onServiceTop250'))) {
+  if (!readOnServiceDb()) {
     getTop250().then(() => {
       writeDbToStorage();
       copyNewDbToOnServiceDb();
@@ -64,12 +63,15 @@ function initDb(func) {
     if (!(sessionStorage.getItem('session-active'))) {
       setSessionActiveStatus();
       console.log('renew the on service database')
-      copyNewDbToOnServiceDb();
+      overwriteOnServiceDbWithNewDb();
     }
     functionToRun();
     console.log('start to render the page');
     console.log('start to fetch new top 250');
-    getTop250();
+    getTop250().then(() => {
+      writeDbToStorage();
+      console.log('finish updating the new top 250');
+    });
   }
 }
 
@@ -77,12 +79,16 @@ function writeDbToStorage() {
   localStorage.setItem('newTop250', JSON.stringify(newTop250Db));
 }
 
-function copyNewDbToOnServiceDb() {
+function overwriteOnServiceDbWithNewDb() {
   localStorage.setItem('onServiceTop250', localStorage.getItem('newTop250'));
 }
 
 function setSessionActiveStatus() {
   sessionStorage.setItem('session-active', true);
+}
+
+function readOnServiceDb() {
+  return localStorage.getItem('onServiceTop250');
 }
 
 function AJAXHandle(options) {
