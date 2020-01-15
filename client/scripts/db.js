@@ -48,7 +48,7 @@ function get250Interval(start, end) {
 }
 
 function initDb(func) {
-  functionToRun = func || function (result) { };
+  functionToRun = func || function () { };
   if (!(localStorage.getItem('onServiceTop250'))) {
     getTop250().then(() => {
       writeDbToStorage();
@@ -56,7 +56,7 @@ function initDb(func) {
       setSessionActiveStatus();
       console.log('finish init database');
       console.log('start to render the page');
-      functionToRun;
+      functionToRun();
       console.log('finish rendering the page');
     });
   }
@@ -66,7 +66,7 @@ function initDb(func) {
       console.log('renew the on service database')
       copyNewDbToOnServiceDb();
     }
-    functionToRun;
+    functionToRun();
     console.log('start to render the page');
     console.log('start to fetch new top 250');
     getTop250();
