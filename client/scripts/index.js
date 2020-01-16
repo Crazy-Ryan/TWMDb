@@ -1,16 +1,21 @@
 let classificationDb;
 let movieDb;
 let pastHighlightCatagoryBox;
+let movieListToRender;
+let movieRenderProgressIndex = 1;
+const movieRenderInterval = 20;
+
 
 initDb(fetchDataFromLocalStorage);
 renderAllCatagorys();
-renderMovieList(findMoviesIds(movieDb));
+renderMovieListInInterval(findMoviesIds(movieDb), movieRenderProgressIndex, movieRenderProgressIndex + movieRenderInterval - 1);
+
 function fetchDataFromLocalStorage() {
   classificationDb = readDbClassification();
   movieDb = readOnServiceDb();
 }
 
-// let showId = ["1292052", "1295644", "1307914", "1291841", "1296141", "1299131", "1293350", "26580232", "1305487"];
+let showId = ["1292052", "1295644", "1307914", "1291841", "1296141", "1299131", "1293350", "26580232", "1305487"];
 
 function onInterfaceClick(event) {
   const catagoryBox = 'catagory-box';
@@ -31,38 +36,38 @@ function findMoviesOfCatagory(catagoryList, catagoryName) {
 
 function highlightCatagoryBox(target) {
   toggleHighlightCatagoryBox(target);
-  if (pastHighlightCatagoryBox){
+  if (pastHighlightCatagoryBox) {
     toggleHighlightCatagoryBox(pastHighlightCatagoryBox);
   }
   pastHighlightCatagoryBox = target;
 }
 
 function toggleHighlightCatagoryBox(target) {
-  if ('yellow' === target.style.backgroundColor){
+  if ('yellow' === target.style.backgroundColor) {
     target.style.backgroundColor = 'transparent';
   }
-  else{
+  else {
     target.style.backgroundColor = 'yellow';
   }
 }
 
-function findCatagoryBox(target){
+function findCatagoryBox(target) {
   let targetEl;
-  if(event.target.getAttribute('class')){
+  if (event.target.getAttribute('class')) {
     targetEl = event.target;
   }
-  else{
-    targetEl=event.target.parentElement;
+  else {
+    targetEl = event.target.parentElement;
   }
   return targetEl;
 }
 
-function selectCatagoryHandle(catagoryBoxEl){
+function selectCatagoryHandle(catagoryBoxEl) {
   let catagorySelected = catagoryBoxEl.firstElementChild.textContent;
   highlightCatagoryBox(catagoryBoxEl);
   removeMovies();
-  renderMovieList(findMoviesOfCatagory(classificationDb,catagorySelected));
-  window.scrollTo(0,0);
+  renderMovieListInInterval(findMoviesOfCatagory(classificationDb, catagorySelected));
+  window.scrollTo(0, 0);
 }
 
 function removeMovies() {
@@ -72,9 +77,11 @@ function removeMovies() {
   }
 }
 
-function renderMovieList(idList) {
+function renderMovieListInInterval(idList, start, end) {
+  let renderStart = start || 1;
+  let renderEnd = end || idList.length;
   let movieGallaryEl = document.getElementsByClassName("movie-gallary")[0];
-  idList.forEach((id) => {
+  idList.slice(renderStart - 1, renderEnd).forEach((id) => {
     movieGallaryEl.appendChild(renderSingleMovie(getDataById(movieDb, id)));
   })
 }
