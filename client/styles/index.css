@@ -49,15 +49,45 @@ header input {
   line-height: 50px;
 }
 
+.content {
+  display: flex;
+  width: 80%;
+  margin: 0 auto;
+}
+
 .sidebar{
-  float: left;
-  /* position: fixed; */
-  width: 20%;
-  /* height: 100%; */
+  /* float: left; */
+  position: sticky;
+  position: -webkit-sticky;
+  
+  top: 0px;
+  width: 10%;
+  height: 100%;
   border: 1px solid red;
 }
 
+.sidebar div{
+  border-bottom: 1px soid #333333;
+  text-align: center;
+  background-color: #eeeeee;
+}
+
 .movie-gallary{
-  padding-left: 20%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  text-align: center;
   background-color: rosybrown;
+}
+
+.movie-box{
+  border: 1px solid blue;
+  text-align: center;
+}
+
+.movie-gallary img{
+  width: 80%;
+}
+
+.movie-title{
+  text-decoration: none;
 }
