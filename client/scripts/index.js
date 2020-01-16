@@ -17,9 +17,7 @@ function onInterfaceClick(event) {
   let clickClass = event.target.getAttribute('class') || event.target.parentElement.getAttribute('class');
   // console.log(clickClass);
   if (catagoryBox === clickClass) {
-    let catagoryBoxEl = findCatagoryBox(event.target);
-    highlightCatagoryBox(catagoryBoxEl);
-    selectCatagoryHandle(catagoryBoxEl);
+    selectCatagoryHandle(findCatagoryBox(event.target));
   }
 }
 
@@ -56,17 +54,15 @@ function findCatagoryBox(target){
   else{
     targetEl=event.target.parentElement;
   }
-  console.log(targetEl);
   return targetEl;
 }
-// function findMoviesCatagories(catagoryList) {
-//   return catagoryList.map((catagory) => (catagory.name));
-// }
 
 function selectCatagoryHandle(catagoryBoxEl){
   let catagorySelected = catagoryBoxEl.firstElementChild.textContent;
+  highlightCatagoryBox(catagoryBoxEl);
   removeMovies();
   renderMovieList(findMoviesOfCatagory(classificationDb,catagorySelected));
+  window.scrollTo(0,0);
 }
 
 function removeMovies() {
