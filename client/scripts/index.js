@@ -3,7 +3,7 @@ let movieDb;
 let pastHighlightCatagoryBox;
 let movieListToRender;
 let movieRenderProgressIndex = 1;
-const movieRenderInterval =20;
+const movieRenderInterval = 20;
 
 
 initDb(fetchDataFromLocalStorage);
@@ -44,11 +44,11 @@ function highlightCatagoryBox(target) {
 }
 
 function toggleHighlightCatagoryBox(target) {
-  if ('yellow' === target.style.backgroundColor) {
+  if ('darkcyan' === target.style.backgroundColor) {
     target.style.backgroundColor = 'transparent';
   }
   else {
-    target.style.backgroundColor = 'yellow';
+    target.style.backgroundColor = 'darkcyan';
   }
 }
 
@@ -73,6 +73,12 @@ function selectCatagoryHandle(catagoryBoxEl) {
   window.scrollTo(0, 0);
 }
 
+function sortCatagoryByMovieCount(catagoryObjList) {
+  return catagoryObjList.sort(function (a, b) {
+    return b.id.length - a.id.length;
+  });
+}
+
 function removeMovies() {
   let movieGallaryEl = document.getElementsByClassName("movie-gallary")[0];
   while (movieGallaryEl.firstChild) {
@@ -91,13 +97,19 @@ function renderMovieListInInterval(idList, start, end) {
 
 function renderSingleMovie(movieObj) {
   let movieEl = document.createElement('div');
-  movieEl.setAttribute('class', 'movie-box');
   movieEl.innerHTML = `
-    <a href="../pages/detailPage.html?${movieObj.id}"><img src=${movieObj.images.small} />
-      <div><span class="movie-title">${movieObj.title}</span>
-    </a><span class="movie-year">(${movieObj.year})</span>
+  <div class="movie-box">
+    <a href="../pages/detailPage.html?${movieObj.id}">
+      <div class="img-wrap">
+        <img src=${movieObj.images.small}>
+      </div>
+      <div class="movie-title">${movieObj.title}</div>
+    </a>
+    <div class="movie-year">(${movieObj.year})</div>
+    <div>
+      <span class="rating-star">★</span><span class="movie-rating">${movieObj.rating.average.toFixed(1)}</span>
     </div>
-    <div><span class="rating-star">★</span><span class="movie-rating">${movieObj.rating.average.toFixed(1)}</span></div>`;
+  </div>`;
   return movieEl;
 }
 
@@ -118,7 +130,7 @@ function renderCatagorysFromList(catagoryObjList) {
 }
 
 function renderAllCatagorys() {
-  renderCatagorysFromList(classificationDb);
+  renderCatagorysFromList(sortCatagoryByMovieCount(classificationDb));
 }
 
 function getDataById(database, id) {
@@ -139,7 +151,6 @@ function getDocumentTop() {
   return scrollTop;
 }
 
-//可视窗口高度
 function getWindowHeight() {
   let windowHeight = 0;
   if (document.compatMode == "CSS1Compat") {
@@ -150,7 +161,6 @@ function getWindowHeight() {
   return windowHeight;
 }
 
-//滚动条滚动高度
 function getScrollHeight() {
   let scrollHeight = 0,
     bodyScrollHeight = 0,
@@ -172,11 +182,12 @@ window.onscroll = function () {
   if (getScrollHeight() < getWindowHeight() + getDocumentTop() + 15) {
     let loadmore = document.getElementsByClassName('loadmore')[0];
     loadmore.innerHTML = '<span class="loading"></span>加载中..';
-    if (getScrollHeight() -1 <= getWindowHeight() + getDocumentTop()) {
+    if (getScrollHeight() - 1 <= getWindowHeight() + getDocumentTop()) {
       loadmore.innerHTML = ' ';
-      // console.log(index);
-      movieRenderProgressIndex += movieRenderInterval;
-      renderMovieListInInterval(movieListToRender, movieRenderProgressIndex, movieRenderProgressIndex + movieRenderInterval - 1);
+      // if ((movieRenderProgressIndex + movieRenderInterval) < movieListToRender.length) {
+        movieRenderProgressIndex += movieRenderInterval;
+        renderMovieListInInterval(movieListToRender, movieRenderProgressIndex, movieRenderProgressIndex + movieRenderInterval - 1);
+      // }
     }
   }
 }
