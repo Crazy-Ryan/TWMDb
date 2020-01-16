@@ -169,7 +169,6 @@ header input {
 }
 
 .catagory-list {
-<<<<<<< HEAD
   /* float: left; */
   position: sticky;
   position: -webkit-sticky;
@@ -212,37 +211,6 @@ header input {
   margin: 10px;
   height: auto;
   text-align: center;
-=======
-    position: sticky;
-    position: -webkit-sticky;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 10px;
-    top: 0px;
-    width: 20%;
-    height: 100%;
-}
-
-.catagory-list div {
-    text-align: center;
-    /* background-color: #eeeeee; */
-}
-
-.catagory-box {
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid red;
-    padding: 5px 10px;
-}
-
-.movie-gallary {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    column-gap: 10px;
-    row-gap: 10px;
-    width: 80%;
-    text-align: center;
->>>>>>> 1e476142374ba6af12d881861ca81b60afed5e86
 }
 
 .movie-box {
@@ -252,7 +220,6 @@ header input {
 }
 
 .movie-box img {
-<<<<<<< HEAD
   position: absolute;
   left: 0;
   top: 0;
@@ -279,22 +246,12 @@ a {
 
 .rating-star{
   color: #f60;
-=======
-    width: 100%;
-    /* height: 100%; */
-    object-fit: cover;
-}
-
-.movie-title {
-    text-decoration: none;
->>>>>>> 1e476142374ba6af12d881861ca81b60afed5e86
 }
 
 
 /**加载效果旋转**/
 
 @-webkit-keyframes rotate {
-<<<<<<< HEAD
   0% {
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
@@ -314,27 +271,6 @@ a {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
-=======
-    0% {
-        -webkit-transform: rotate(0deg);
-        transform: rotate(0deg);
-    }
-    100% {
-        -webkit-transform: rotate(360deg);
-        transform: rotate(360deg);
-    }
-}
-
-@keyframes rotate {
-    0% {
-        -webkit-transform: rotate(0deg);
-        transform: rotate(0deg);
-    }
-    100% {
-        -webkit-transform: rotate(360deg);
-        transform: rotate(360deg);
-    }
->>>>>>> 1e476142374ba6af12d881861ca81b60afed5e86
 }
 
 .loadmore {
