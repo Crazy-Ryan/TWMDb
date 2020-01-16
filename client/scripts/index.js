@@ -3,12 +3,13 @@ let movieDb;
 let pastHighlightCatagoryBox;
 let movieListToRender;
 let movieRenderProgressIndex = 1;
-const movieRenderInterval = 20;
+const movieRenderInterval =20;
 
 
 initDb(fetchDataFromLocalStorage);
 renderAllCatagorys();
-renderMovieListInInterval(findMoviesIds(movieDb), movieRenderProgressIndex, movieRenderProgressIndex + movieRenderInterval - 1);
+movieListToRender = findMoviesIds(movieDb);
+renderMovieListInInterval(movieListToRender, movieRenderProgressIndex, movieRenderProgressIndex + movieRenderInterval - 1);
 
 function fetchDataFromLocalStorage() {
   classificationDb = readDbClassification();
@@ -66,7 +67,9 @@ function selectCatagoryHandle(catagoryBoxEl) {
   let catagorySelected = catagoryBoxEl.firstElementChild.textContent;
   highlightCatagoryBox(catagoryBoxEl);
   removeMovies();
-  renderMovieListInInterval(findMoviesOfCatagory(classificationDb, catagorySelected));
+  movieRenderProgressIndex = 1;
+  movieListToRender = findMoviesOfCatagory(classificationDb, catagorySelected);
+  renderMovieListInInterval(movieListToRender, movieRenderProgressIndex, movieRenderProgressIndex + movieRenderInterval - 1);
   window.scrollTo(0, 0);
 }
 
@@ -148,5 +151,61 @@ function searchProject() {
 function keyEnterSearchProject(event) {
   if (13 == event.keyCode) {
     searchProject();
+  }
+}
+
+function getDocumentTop() {
+  let scrollTop = 0,
+    bodyScrollTop = 0,
+    documentScrollTop = 0;
+  if (document.body) {
+    bodyScrollTop = document.body.scrollTop;
+  }
+  if (document.documentElement) {
+    documentScrollTop = document.documentElement.scrollTop;
+  }
+  scrollTop = (bodyScrollTop - documentScrollTop > 0) ? bodyScrollTop : documentScrollTop;
+  return scrollTop;
+}
+
+//可视窗口高度
+function getWindowHeight() {
+  let windowHeight = 0;
+  if (document.compatMode == "CSS1Compat") {
+    windowHeight = document.documentElement.clientHeight;
+  } else {
+    windowHeight = document.body.clientHeight;
+  }
+  return windowHeight;
+}
+
+//滚动条滚动高度
+function getScrollHeight() {
+  let scrollHeight = 0,
+    bodyScrollHeight = 0,
+    documentScrollHeight = 0;
+  if (document.body) {
+    bodyScrollHeight = document.body.scrollHeight;
+  }
+
+  if (document.documentElement) {
+    documentScrollHeight = document.documentElement.scrollHeight;
+  }
+  scrollHeight = (bodyScrollHeight - documentScrollHeight > 0) ? bodyScrollHeight : documentScrollHeight;
+  return scrollHeight;
+}
+
+
+window.onscroll = function () {
+  console.log(getWindowHeight(), getDocumentTop(), getScrollHeight());
+  if (getScrollHeight() < getWindowHeight() + getDocumentTop() + 15) {
+    let loadmore = document.getElementsByClassName('loadmore')[0];
+    loadmore.innerHTML = '<span class="loading"></span>加载中..';
+    if (getScrollHeight() -1 <= getWindowHeight() + getDocumentTop()) {
+      loadmore.innerHTML = ' ';
+      // console.log(index);
+      movieRenderProgressIndex += movieRenderInterval;
+      renderMovieListInInterval(movieListToRender, movieRenderProgressIndex, movieRenderProgressIndex + movieRenderInterval - 1);
+    }
   }
 }
