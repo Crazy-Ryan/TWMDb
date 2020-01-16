@@ -62,12 +62,11 @@ header input {
   top: 0px;
   width: 20%;
   height: 100%;
-  border: 1px solid red;
 }
 
 .catagory-list div {
   text-align: center;
-  background-color: #eeeeee;
+  /* background-color: #eeeeee; */
 }
 
 .catagory-box {
