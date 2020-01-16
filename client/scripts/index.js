@@ -99,7 +99,7 @@ function renderSingleMovie(movieObj) {
   let movieEl = document.createElement('div');
   movieEl.innerHTML = `
   <div class="movie-box">
-    <a href="../pages/detailPage.html?${movieObj.id}">
+    <a href="../pages/detailPage.html?${movieObj.id}" target="_blank">
       <div class="img-wrap">
         <img src=${movieObj.images.small}>
       </div>
