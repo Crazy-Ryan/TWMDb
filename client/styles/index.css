@@ -60,14 +60,15 @@ header input {
     overflow: hidden;
 }
 
-#list {
+.posters {
     position: absolute;
+    /* left: -1000px; */
     z-index: 1;
     width: 7000px;
     height: 200px;
 }
 
-#list img {
+.posters img {
     float: left;
     width: 1000px;
     height: 200px;
@@ -143,6 +144,10 @@ header input {
     opacity: 0.3;
     /*设置透明度*/
     cursor: pointer;
+}
+
+#small {
+    display: none;
 }
 
 #nav-container a:hover {

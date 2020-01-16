@@ -1,5 +1,6 @@
 window.onload = function() {
     var oContainer = document.getElementById('nav-container');
+    var list = document.getElementsByClassName('posters')[0];
     var oPrev = document.getElementById('prev');
     var oNext = document.getElementById('next');
     var oCircle = document.getElementById('circle');
