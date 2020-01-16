@@ -1,12 +1,13 @@
 let movieDb;
 let content = document.getElementsByClassName('content')[0];
+let inputToSearch = decodeURI(window.location.search.slice(1));
 
 function fetchDataFromLocalStorage() {
     movieDb = readOnServiceDb();
 }
 
-function searchProject() {
-    let inputValue = document.getElementById("search-movie").value;
+function searchProject(data) {
+    let inputValue = document.getElementById("search-movie").value || data;
     content.innerHTML = `<h2>搜索：${inputValue}</h2>`;
     let searchMovieId = itemSearch(movieDb, inputValue);
     let searchMovie = movieSearch(searchMovieId);
@@ -39,3 +40,4 @@ function movieSearch(searchMovieId) {
     return res;
 }
 initDb(fetchDataFromLocalStorage);
+searchProject(inputToSearch);
