@@ -30,7 +30,6 @@ header input {
     width: 500px;
     height: 35px;
     border: 0;
-    /* border-radius: 5px; */
     outline: none;
     top: 7px;
 }
@@ -62,7 +61,6 @@ header input {
 
 .posters {
     position: absolute;
-    /* left: -1000px; */
     z-index: 1;
     width: 7000px;
     height: 200px;
@@ -128,7 +126,6 @@ header input {
     position: absolute;
     top: 80px;
     z-index: 2;
-    /*箭头所在层置顶*/
     display: none;
     width: 40px;
     height: 40px;
@@ -138,11 +135,9 @@ header input {
     text-align: center;
     font-weight: bold;
     border-radius: 50%;
-    /*箭头设置成圆形*/
     background: #000;
-    filter: alpha(opacity: 30);
+    filter: alpha(opacity=30);
     opacity: 0.3;
-    /*设置透明度*/
     cursor: pointer;
 }
 
@@ -151,7 +146,7 @@ header input {
 }
 
 #nav-container a:hover {
-    filter: alpha(opacity: 60);
+    filter: alpha(opacity=60);
     opacity: 0.6;
 }
 
@@ -167,9 +162,6 @@ header input {
     right: 10px;
 }
 
-
-/* -------------------- */
-
 .content {
     display: flex;
     width: 80%;
@@ -177,7 +169,6 @@ header input {
 }
 
 .catagory-list {
-    /* float: left; */
     position: sticky;
     position: -webkit-sticky;
     display: grid;
