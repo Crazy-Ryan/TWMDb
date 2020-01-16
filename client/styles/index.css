@@ -1,147 +1,267 @@
 * {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
 }
 
 body {
-  height: 100%;
+    height: 100%;
 }
+
 
 /* header */
 
-header, footer {
-  width: 100%;
-  height: 50px;
-  background-color: black;
+header,
+footer {
+    width: 100%;
+    height: 50px;
+    background-color: black;
 }
 
 .logo-font {
-  color: white;
-  padding: 15px 0 0 15px;
-  font: bold 20px/100% "monospace, serif";
+    color: white;
+    padding: 15px 0 0 15px;
+    font: bold 20px/100% "monospace, serif";
 }
 
 header input {
-  position: absolute;
-  right: 400px;
-  width: 500px;
-  height: 35px;
-  border: 0;
-  /* border-radius: 5px; */
-  outline: none;
-  top: 7px;
+    position: absolute;
+    right: 400px;
+    width: 500px;
+    height: 35px;
+    border: 0;
+    /* border-radius: 5px; */
+    outline: none;
+    top: 7px;
 }
 
 .icon-search {
-  position: absolute;
-  top: 10px;
-  right: 360px;
-  width: 30px;
+    position: absolute;
+    top: 10px;
+    right: 360px;
+    width: 30px;
 }
 
 .copyright-font {
-  color: white;
-  font-size: 12px;
-  text-align: center;
-  line-height: 50px;
+    color: white;
+    font-size: 12px;
+    text-align: center;
+    line-height: 50px;
 }
 
+
+/* ---nav--- */
+
+#nav-container {
+    position: relative;
+    width: 1000px;
+    height: 200px;
+    margin: 10px auto;
+    overflow: hidden;
+}
+
+#list {
+    position: absolute;
+    z-index: 1;
+    width: 7000px;
+    height: 200px;
+}
+
+#list img {
+    float: left;
+    width: 1000px;
+    height: 200px;
+}
+
+.circle {
+    position: absolute;
+    left: 150px;
+    bottom: 20px;
+    z-index: 2;
+    width: 100px;
+    height: 10px;
+}
+
+.circle div {
+    float: left;
+    position: relative;
+    margin-right: 5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 1px solid #fff;
+    background: #333;
+    cursor: pointer;
+}
+
+.circle div img {
+    position: absolute;
+    bottom: 20px;
+    left: -54px;
+    width: 110px;
+    height: 70px;
+    border-radius: 0;
+    border: 5px solid #fff;
+}
+
+.circle div a {
+    position: absolute;
+    display: inline-block;
+    top: -12px;
+    left: -1px;
+    width: 0;
+    height: 0;
+    opacity: 1;
+    background: none;
+    border-radius: 0;
+    border-right: 6px solid transparent;
+    border-left: 6px solid transparent;
+    border-top: 6px solid #fff;
+}
+
+.circle .on {
+    background: #FF972F;
+}
+
+#nav-container a {
+    position: absolute;
+    top: 80px;
+    z-index: 2;
+    /*箭头所在层置顶*/
+    display: none;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    color: #fff;
+    font-size: 36px;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 50%;
+    /*箭头设置成圆形*/
+    background: #000;
+    filter: alpha(opacity: 30);
+    opacity: 0.3;
+    /*设置透明度*/
+    cursor: pointer;
+}
+
+#nav-container a:hover {
+    filter: alpha(opacity: 60);
+    opacity: 0.6;
+}
+
+#nav-container:hover a {
+    display: block;
+}
+
+#prev {
+    left: 10px;
+}
+
+#next {
+    right: 10px;
+}
+
+
+/* -------------------- */
+
 .content {
-  display: flex;
-  width: 80%;
-  margin: 0 auto;
+    display: flex;
+    width: 80%;
+    margin: 0 auto;
 }
 
 .catagory-list {
-  /* float: left; */
-  position: sticky;
-  position: -webkit-sticky;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 10px;
-  top: 0px;
-  width: 20%;
-  height: 100%;
+    /* float: left; */
+    position: sticky;
+    position: -webkit-sticky;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 10px;
+    top: 0px;
+    width: 20%;
+    height: 100%;
 }
 
 .catagory-list div {
-  text-align: center;
-  /* background-color: #eeeeee; */
+    text-align: center;
+    /* background-color: #eeeeee; */
 }
 
 .catagory-box {
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 1px solid red;
-  padding: 5px 10px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid red;
+    padding: 5px 10px;
 }
 
 .movie-gallary {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  column-gap: 10px;
-  row-gap: 10px;
-  width: 80%;
-  text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    column-gap: 10px;
+    row-gap: 10px;
+    width: 80%;
+    text-align: center;
 }
 
 .movie-box {
-  border: 1px solid grey;
-  border-radius: 5px;
-  text-align: center;
+    border: 1px solid grey;
+    border-radius: 5px;
+    text-align: center;
 }
 
 .movie-box img {
-  width: 100%;
-  /* height: 100%; */
-  object-fit: cover;
+    width: 100%;
+    /* height: 100%; */
+    object-fit: cover;
 }
 
 .movie-title {
-  text-decoration: none;
+    text-decoration: none;
 }
+
 
 /**加载效果旋转**/
 
 @-webkit-keyframes rotate {
-  0% {
-      -webkit-transform: rotate(0deg);
-      transform: rotate(0deg);
-  }
-  100% {
-      -webkit-transform: rotate(360deg);
-      transform: rotate(360deg);
-  }
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
 }
 
 @keyframes rotate {
-  0% {
-      -webkit-transform: rotate(0deg);
-      transform: rotate(0deg);
-  }
-  100% {
-      -webkit-transform: rotate(360deg);
-      transform: rotate(360deg);
-  }
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
 }
 
 .loadmore {
-  display: block;
-  line-height: 50px;
-  text-align: center;
-  color: #ccc;
-  font-size: 14px;
+    display: block;
+    line-height: 50px;
+    text-align: center;
+    color: #ccc;
+    font-size: 14px;
 }
 
 .loadmore span {
-  height: 20px;
-  width: 20px;
-  border-radius: 100%;
-  display: inline-block;
-  margin: 10px;
-  border: 2px solid #f60;
-  border-bottom-color: transparent;
-  vertical-align: middle;
-  -webkit-animation: rotate 1.1s infinite linear;
-  animation: rotate 1.1s infinite linear;
+    height: 20px;
+    width: 20px;
+    border-radius: 100%;
+    display: inline-block;
+    margin: 10px;
+    border: 2px solid #f60;
+    border-bottom-color: transparent;
+    vertical-align: middle;
+    -webkit-animation: rotate 1.1s infinite linear;
+    animation: rotate 1.1s infinite linear;
 }

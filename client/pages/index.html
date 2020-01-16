@@ -2,34 +2,82 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" type="text/css" media="screen" href="../styles/index.css" />
-  <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" media="screen" href="../styles/index.css" />
+    <title>Document</title>
 </head>
 
 
 <body onclick="onInterfaceClick(event)">
-  <header>
-    <div class="logo-font">TWMDb</div>
-    <input id="search-movie" type="search" name="search" placeholder="Search" />
-    <img class="icon-search" src="../static/img/search.png" alt="search" onclick="searchProject()" />
-  </header>
-  <container>
-    <div class="content ">
-      <div class="catagory-list">
-      </div>
-      <div class="movie-gallary">
-      </div>
-    </div>
-    <div class="loadmore"></div>
-  </container>
-  <footer>
-    <div class="copyright-font ">Copyright©2020 TWMDb.All Rights Reserved.</div>
-  </footer>
+    <header>
+        <div class="logo-font">TWMDb</div>
+        <input id="search-movie" type="search" name="search" placeholder="Search" />
+        <img class="icon-search" src="../static/img/search.png" alt="search" onclick="searchProject()" />
+    </header>
+    <nav>
+        <div id="nav-container">
+            <div id="list" class="pic" style="left:-1000px">
+                <img src="../static/img/5.jpg" alt="1" />
+                <img src="../static/img/1.jpg" alt="1" />
+                <img src="../static/img/2.jpg" alt="1" />
+                <img src="../static/img/3.jpg" alt="1" />
+                <img src="../static/img/4.jpg" alt="1" />
+                <img src="../static/img/5.jpg" alt="1" />
+                <img src="../static/img/1.jpg" alt="1" />
+            </div>
+            <div id="circle" class="circle">
+                <div class="on">
+                    <p id="small" style="display: none">
+                        <img src="../static/img/1.jpg">
+                        <a href="#"></a>
+                    </p>
+                </div>
+                <div>
+                    <p id="small" style="display: none">
+                        <img src="../static/img/2.jpg">
+                        <a href="#"></a>
+                    </p>
+                </div>
+                <div>
+                    <p id="small" style="display: none">
+                        <img src="../static/img/3.jpg">
+                        <a href="#"></a>
+                    </p>
+                </div>
+                <div>
+                    <p id="small" style="display: none">
+                        <img src="../static/img/4.jpg">
+                        <a href="#"></a>
+                    </p>
+                </div>
+                <div>
+                    <p id="small" style="display: none">
+                        <img src="../static/img/5.jpg">
+                        <a href="#"></a>
+                    </p>
+                </div>
+            </div>
+            <a href="javascript:;" id="prev" class="arrow">&lt;</a>
+            <a href="javascript:;" id="next" class="arrow">&gt;</a>
+        </div>
+    </nav>
+    <container>
+        <div class="content ">
+            <div class="catagory-list">
+            </div>
+            <div class="movie-gallary">
+            </div>
+        </div>
+        <div class="loadmore"></div>
+    </container>
+    <footer>
+        <div class="copyright-font ">Copyright©2020 TWMDb.All Rights Reserved.</div>
+    </footer>
 
 </body>
+<script src='../scripts/nav.js'></script>
 <script src='../scripts/db.js'></script>
 <script src='../scripts/index.js'></script>
 
