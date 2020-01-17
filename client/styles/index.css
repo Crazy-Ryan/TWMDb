@@ -219,7 +219,7 @@ header input {
   padding: 10px 15px;
 }
 
-.catagory-list div:hover {
+.catagory-box:hover {
   cursor: pointer;
   background-color: grey;
   color: black;

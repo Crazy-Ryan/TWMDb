@@ -48,8 +48,8 @@ function highlightCatagoryBox(target) {
 
 function toggleHighlightCatagoryBox(target) {
   if ('grey' === target.style.backgroundColor) {
-    target.style.backgroundColor = 'transparent';
-    target.style.color = 'white';
+    target.style.backgroundColor = null;
+    target.style.color = null;
   } else {
     target.style.backgroundColor = 'grey';
     target.style.color = 'black';
