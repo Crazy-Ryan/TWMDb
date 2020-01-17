@@ -202,8 +202,9 @@ header input {
 }
 
 .catagory-list {
+  position: sticky;
   position: -webkit-sticky;
-  top: 0px;
+  top: 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
