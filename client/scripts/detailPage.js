@@ -61,7 +61,7 @@ function getMovieReviews() {
 }
 
 function loadMovieReviews(data) {
-    let comments = data.comments.slice(0, 5);
+    let comments = sortCommentsWithTime(data.comments).slice(0, 5);
     movieComments.innerHTML += `<h3>电影热评</h3>
     <div class="user-comments"></div>`;
     let userComments = document.getElementsByClassName('user-comments')[0];
@@ -74,6 +74,15 @@ function loadMovieReviews(data) {
       <p>${element.content}</p>
       </div>`;
     });
+}
+
+function sortCommentsWithTime(comments) {
+    let sortComments = comments.sort(function(movieA, movieB) {
+        let yearA = Number(movieA.created_at.split(/[-: ]/).join(''));
+        let yearB = Number(movieB.created_at.split(/[-: ]/).join(''));
+        return yearB - yearA;
+    })
+    return sortComments;
 }
 
 function ratingToStar(num) {
