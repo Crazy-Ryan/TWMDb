@@ -115,7 +115,7 @@ function getMovieRecommendId(movieId) {
         item => (item.name === data[0].genres[0])
     );
     let recommendMovieIdList = recommendData[0].id.filter(
-        item => (item.id !== movieId)
+        item => (item !== movieId)
     );
     return recommendMovieIdList.slice(0, 6);
 }
