@@ -26,7 +26,6 @@ function getMovieData() {
   AJAXHandle(options);
 }
 
-
 function loadMovieDetail(data) {
   let movieDirectors = data.directors.map(item => item.name).join(',');
   let movieCasts = data.casts.map(item => item.name).join(',');
@@ -120,7 +119,6 @@ function getMovieRecommendId(movieId) {
   return recommendMovieIdList.slice(0, 6);
 }
 
-
 function getMovieRecommends() {
   let recommendMovieIdList = getMovieRecommendId(movieId);
   recommendMovieIdList.forEach(
@@ -133,7 +131,6 @@ function keyEnterSearchProject() {
     searchProject();
   }
 }
-
 
 function searchProject() {
   let inputValue = document.getElementById("search-movie").value;
