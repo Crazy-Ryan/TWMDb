@@ -74,7 +74,7 @@ function selectCatagoryHandle(catagoryBoxEl) {
   movieRenderProgressIndex = 1;
   movieListToRender = findMoviesOfCatagory(classificationDb, catagorySelected);
   renderMovieListInInterval(movieListToRender, movieRenderProgressIndex, movieRenderProgressIndex + movieRenderInterval - 1);
-  window.scrollTo(0, 0);
+  // window.scrollTo(0, 0);
 }
 
 function sortCatagoryByMovieCount(catagoryObjList) {

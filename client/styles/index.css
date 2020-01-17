@@ -67,7 +67,7 @@ header input {
   padding-bottom: 30%;
 }
 
-.posters a{
+.posters a {
   position: relative;
 }
 
@@ -177,17 +177,19 @@ header input {
   margin: 0 auto;
 }
 
-.catagory-list {
-  /* float: left; */
-  position: sticky;
-  position: -webkit-sticky;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  top: 0px;
+.catagory-sidebar {
   width: 20%;
-  height: 100%;
   background-color: black;
   color: #fff;
+}
+
+.catagory-list {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* height: 100%; */
 }
 
 .catagory-list div {
