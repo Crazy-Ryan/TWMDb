@@ -127,14 +127,34 @@ function searchInObjArray(objArray, objname) {
   }
   return false;
 }
-
 function itemSearch(collection, textToSearch) {
+  let singleTextArr = textToSearch.split(' ');
+  let matchingItems = collectAllMatchingObj(collection, singleTextArr);
+  return removeDuplicateItems(matchingItems);
+}
+
+function collectAllMatchingObj(collection, textArr) {
+  return textArr.reduce((matches, currentText) => {
+    return matches.concat(singleItemSearch(collection, currentText));
+  }, []);
+}
+
+function singleItemSearch(collection, textToSearch) {
   return collection.reduce((matchCollection, item) => {
     if (-1 !== (item.title.search(textToSearch))) {
       matchCollection.push(item.id);
     }
     return matchCollection;
   }, [])
+}
+
+function removeDuplicateItems(itemArr) {
+  return itemArr.reduce((result, currentItem) => {
+    if (!result.includes(currentItem)) {
+      result.push(currentItem);
+    }
+    return result;
+  }, []);
 }
 
 function AJAXHandle(options) {
