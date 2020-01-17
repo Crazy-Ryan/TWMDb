@@ -13,9 +13,7 @@ function getTop250() {
         segmentCollection[index] = array;
         receiveCount++;
         if (segmentCount === receiveCount) {
-          console.log('finish_collection');
           newTop250Db = segmentCollection.flat();
-          console.log(newTop250Db);
           resolve();
         }
       });
@@ -54,25 +52,18 @@ function initDb(func) {
       overwriteOnServiceDbWithNewDb();
       writeClassificationResultToStorage();
       setSessionActiveStatus();
-      console.log('finish init database');
-      console.log('start to render the page');
       functionToRun();
-      console.log('finish rendering the page');
     });
   }
   else {
     if (!(sessionStorage.getItem('session-active'))) {
       setSessionActiveStatus();
-      console.log('renew the on service database')
       overwriteOnServiceDbWithNewDb();
       writeClassificationResultToStorage();
     }
     functionToRun();
-    console.log('start to render the page');
-    console.log('start to fetch new top 250');
     getTop250().then(() => {
       writeDbToStorage();
-      console.log('finish updating the new top 250');
     });
   }
 }
@@ -102,7 +93,6 @@ function readDbClassification() {
 }
 
 function classifyMovies(collection) {
-
   return collection.reduce((catagoryCollection, item) => {
     item.genres.forEach((catagory) => {
       if (matchObj = searchInObjArray(catagoryCollection, catagory)) {
@@ -127,6 +117,7 @@ function searchInObjArray(objArray, objname) {
   }
   return false;
 }
+
 function itemSearch(collection, textToSearch) {
   let singleTextArr = textToSearch.split(' ');
   let matchingItems = collectAllMatchingObj(collection, singleTextArr);
