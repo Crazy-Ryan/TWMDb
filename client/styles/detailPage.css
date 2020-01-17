@@ -7,9 +7,6 @@ body {
     height: 100%;
 }
 
-
-/* header */
-
 header,
 footer {
     width: 100%;
@@ -25,7 +22,7 @@ header {
 }
 
 header a {
-  margin-left: 5%;
+    margin-left: 5%;
 }
 
 .search-box {
@@ -38,11 +35,11 @@ header a {
 }
 
 .logo-font {
-    color: #000000;
     padding: 5px 8px;
+    border-radius: 5px;
     font-weight: bolder;
     font-size: 20px;
-    border-radius: 5px;
+    color: #000000;
     background-color: #f5c519;
 }
 
@@ -60,9 +57,6 @@ header input {
 .icon-search {
     width: 20px;
 }
-
-
-/* container */
 
 .content {
     margin: 20px 60px 20px 60px;
@@ -89,8 +83,8 @@ header input {
 }
 
 .movie-informations .picAndDetail {
-    margin-top: 20px;
     display: flex;
+    margin-top: 20px;
 }
 
 .movie-details p {
@@ -117,8 +111,8 @@ header input {
 }
 
 .user-comment :nth-child(3) {
-    color: rgb(178, 170, 170);
     font-size: 13px;
+    color: rgb(178, 170, 170);
 }
 
 .recommend-information {
@@ -133,8 +127,8 @@ header input {
 }
 
 .one-movie-recommend p {
-    font-size: 12px;
     text-align: center;
+    font-size: 12px;
 }
 
 a {
@@ -142,12 +136,9 @@ a {
     color: black;
 }
 
-
-/* footer */
-
 .copyright-font {
-    color: white;
-    font-size: 14px;
-    text-align: center;
     line-height: 50px;
+    text-align: center;
+    font-size: 14px;
+    color: white;
 }

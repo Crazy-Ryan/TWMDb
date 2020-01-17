@@ -107,16 +107,16 @@ function loadMovieRecommend(movieId) {
 }
 
 function getMovieRecommendId(movieId) {
-  let data = movieDb.filter(
-    item => (item.id === movieId)
-  );
-  let recommendData = classificationDb.filter(
-    item => (item.name === data[0].genres[0])
-  );
-  let recommendMovieIdList = recommendData[0].id.filter(
-    item => (item.id !== movieId)
-  );
-  return recommendMovieIdList.slice(0, 6);
+    let data = movieDb.filter(
+        item => (item.id === movieId)
+    );
+    let recommendData = classificationDb.filter(
+        item => (item.name === data[0].genres[0])
+    );
+    let recommendMovieIdList = recommendData[0].id.filter(
+        item => (item !== movieId)
+    );
+    return recommendMovieIdList.slice(0, 6);
 }
 
 function getMovieRecommends() {
