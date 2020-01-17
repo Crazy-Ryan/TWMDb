@@ -87,11 +87,14 @@ function loadMovieRecommend(movieId) {
     let movieTitle = data.title;
     let movieRating = data.rating.average;
     let movieImages = data.images.small;
+    let movieURL = `../pages/detailPage.html?${movieId}`;
     movieRecommend.innerHTML += `
     <div class="one-movie-recommend">
-    <img src="${movieImages}" />
-    <p>${movieTitle}</p>
-    <p>评分：${movieRating}</p>
+      <a href=${movieURL}>
+        <img src="${movieImages}" />
+        <p>${movieTitle}</p>
+      </a>
+        <p>评分：${movieRating}</p>
     </div>`;
 }
 
