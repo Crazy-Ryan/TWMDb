@@ -176,7 +176,7 @@ function getScrollHeight() {
 
 
 window.onscroll = function() {
-    console.log(getWindowHeight(), getDocumentTop(), getScrollHeight());
+    // console.log(getWindowHeight(), getDocumentTop(), getScrollHeight());
     if (getScrollHeight() < getWindowHeight() + getDocumentTop() + 15) {
         let loadmore = document.getElementsByClassName('loadmore')[0];
         loadmore.innerHTML = '<span class="loading"></span>加载中..';

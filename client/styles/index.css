@@ -1,296 +1,297 @@
 * {
-    margin: 0;
-    padding: 0;
-    text-decoration: none;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
 }
 
 body {
-    height: 100%;
+  height: 100%;
 }
-
 
 /* header */
 
-header,
-footer {
-    width: 100%;
-    height: 50px;
-    background-color: black;
+header, footer {
+  width: 100%;
+  height: 50px;
+  background-color: black;
 }
 
 .logo-font {
-    color: white;
-    padding: 15px 0 0 15px;
-    font: bold 20px/100% "monospace, serif";
+  color: white;
+  padding: 15px 0 0 15px;
+  font: bold 20px/100% "monospace, serif";
 }
 
 header input {
-    position: absolute;
-    right: 45px;
-    width: 200px;
-    height: 20px;
-    border: 0;
-    border-radius: 5px;
-    outline: none;
-    top: 15px;
+  position: absolute;
+  right: 45px;
+  width: 200px;
+  height: 20px;
+  border: 0;
+  border-radius: 5px;
+  outline: none;
+  top: 15px;
 }
 
 .icon-search {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    width: 20px;
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  width: 20px;
 }
 
 .copyright-font {
-    color: white;
-    font-size: 12px;
-    text-align: center;
-    line-height: 50px;
+  color: white;
+  font-size: 12px;
+  text-align: center;
+  line-height: 50px;
 }
-
 
 /* ---nav--- */
 
 #nav-container {
-    position: relative;
-    width: 1000px;
-    height: 200px;
-    margin: 10px auto;
-    overflow: hidden;
+  position: relative;
+  margin: 10px auto;
+  overflow: hidden;
 }
 
 .posters {
-    position: absolute;
-    z-index: 1;
-    width: 7000px;
-    height: 200px;
+  position: relative;
+  z-index: 1;
+}
+
+.posters div {
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 30%;
 }
 
 .posters img {
-    float: left;
-    width: 1000px;
-    height: 200px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
 }
 
 .circle {
-    position: absolute;
-    left: 150px;
-    bottom: 20px;
-    z-index: 2;
-    width: 100px;
-    height: 10px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  bottom: 20px;
+  z-index: 2;
+  width: 100px;
+  height: 10px;
 }
 
 .circle div {
-    float: left;
-    position: relative;
-    margin-right: 5px;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    border: 1px solid #fff;
-    background: #333;
-    cursor: pointer;
+  float: left;
+  position: relative;
+  margin-right: 5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid #fff;
+  background: #333;
+  cursor: pointer;
 }
 
 .circle div img {
-    position: absolute;
-    bottom: 20px;
-    left: -54px;
-    width: 110px;
-    height: 70px;
-    border-radius: 0;
-    border: 5px solid #fff;
+  position: absolute;
+  bottom: 20px;
+  left: -54px;
+  width: 110px;
+  height: 70px;
+  border-radius: 0;
+  border: 5px solid #fff;
 }
 
 .circle div a {
-    position: absolute;
-    display: inline-block;
-    top: -12px;
-    left: -1px;
-    width: 0;
-    height: 0;
-    opacity: 1;
-    background: none;
-    border-radius: 0;
-    border-right: 6px solid transparent;
-    border-left: 6px solid transparent;
-    border-top: 6px solid #fff;
+  position: absolute;
+  display: inline-block;
+  top: -12px;
+  left: -1px;
+  width: 0;
+  height: 0;
+  opacity: 1;
+  background: none;
+  border-radius: 0;
+  border-right: 6px solid transparent;
+  border-left: 6px solid transparent;
+  border-top: 6px solid #fff;
 }
 
 .circle .on {
-    background: #FF972F;
+  background: #FF972F;
 }
 
 #nav-container a {
-    position: absolute;
-    top: 80px;
-    z-index: 2;
-    display: none;
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
-    color: #fff;
-    font-size: 36px;
-    text-align: center;
-    font-weight: bold;
-    border-radius: 50%;
-    background: #000;
-    filter: alpha(opacity=30);
-    opacity: 0.3;
-    cursor: pointer;
+  position: absolute;
+  /* top: 80px; */
+  top: 45%;
+  z-index: 2;
+  display: none;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  color: #fff;
+  font-size: 36px;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 50%;
+  background: #000;
+  filter: alpha(opacity=30);
+  opacity: 0.3;
+  cursor: pointer;
 }
 
 #small {
-    display: none;
+  display: none;
 }
 
 #nav-container a:hover {
-    filter: alpha(opacity=60);
-    opacity: 0.6;
+  filter: alpha(opacity=60);
+  opacity: 0.6;
 }
 
 #nav-container:hover a {
-    display: block;
+  display: block;
 }
 
 #prev {
-    left: 10px;
+  left: 10px;
 }
 
 #next {
-    right: 10px;
+  right: 10px;
 }
 
 .content {
-    display: flex;
-    width: 80%;
-    margin: 0 auto;
+  display: flex;
+  width: 80%;
+  margin: 0 auto;
 }
 
 .catagory-list {
-    /* float: left; */
-    position: sticky;
-    position: -webkit-sticky;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    top: 0px;
-    width: 20%;
-    height: 100%;
-    background-color: black;
-    color: #fff;
+  /* float: left; */
+  position: sticky;
+  position: -webkit-sticky;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  top: 0px;
+  width: 20%;
+  height: 100%;
+  background-color: black;
+  color: #fff;
 }
 
 .catagory-list div {
-    text-align: center;
+  text-align: center;
 }
 
 .catagory-box {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 15px;
 }
 
 .catagory-list div:hover {
-    cursor: pointer;
-    background-color: darkcyan;
-    color: #ffffff;
+  cursor: pointer;
+  background-color: darkcyan;
+  color: #ffffff;
 }
 
 .catagory-box span:last-child {
-    color: #bbb;
+  color: #bbb;
 }
 
 .movie-gallary {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-auto-rows: 1fr;
-    column-gap: 10px;
-    row-gap: 10px;
-    width: 80%;
-    margin: 10px;
-    height: auto;
-    text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-auto-rows: 1fr;
+  column-gap: 10px;
+  row-gap: 10px;
+  width: 80%;
+  margin: 10px;
+  height: auto;
+  text-align: center;
 }
 
 .movie-box {
-    border: 1px solid grey;
-    border-radius: 5px;
-    text-align: center;
+  border: 1px solid grey;
+  border-radius: 5px;
+  text-align: center;
 }
 
 .movie-box img {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    object-fit: cover;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  object-fit: cover;
 }
 
 .img-wrap {
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-    padding-bottom: 130%;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding-bottom: 130%;
 }
 
 a {
-    text-decoration: none;
-    color: black;
+  text-decoration: none;
+  color: black;
 }
 
-.movie-year,
-.movie-rating {
-    color: #666;
+.movie-year, .movie-rating {
+  color: #666;
 }
 
 .rating-star {
-    color: #f60;
+  color: #f60;
 }
-
 
 /**加载效果旋转**/
 
 @-webkit-keyframes rotate {
-    0% {
-        -webkit-transform: rotate(0deg);
-        transform: rotate(0deg);
-    }
-    100% {
-        -webkit-transform: rotate(360deg);
-        transform: rotate(360deg);
-    }
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes rotate {
-    0% {
-        -webkit-transform: rotate(0deg);
-        transform: rotate(0deg);
-    }
-    100% {
-        -webkit-transform: rotate(360deg);
-        transform: rotate(360deg);
-    }
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
 }
 
 .loadmore {
-    display: block;
-    line-height: 50px;
-    text-align: center;
-    color: #ccc;
-    font-size: 14px;
+  display: block;
+  line-height: 50px;
+  text-align: center;
+  color: #ccc;
+  font-size: 14px;
 }
 
 .loadmore span {
-    height: 20px;
-    width: 20px;
-    border-radius: 100%;
-    display: inline-block;
-    margin: 10px;
-    border: 2px solid #f60;
-    border-bottom-color: transparent;
-    vertical-align: middle;
-    -webkit-animation: rotate 1.1s infinite linear;
-    animation: rotate 1.1s infinite linear;
+  height: 20px;
+  width: 20px;
+  border-radius: 100%;
+  display: inline-block;
+  margin: 10px;
+  border: 2px solid #f60;
+  border-bottom-color: transparent;
+  vertical-align: middle;
+  -webkit-animation: rotate 1.1s infinite linear;
+  animation: rotate 1.1s infinite linear;
 }
