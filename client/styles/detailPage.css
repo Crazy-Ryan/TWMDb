@@ -13,31 +13,48 @@ body {
 header,
 footer {
     width: 100%;
-    height: 50px;
-    background-color: black;
+    height: 60px;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #121212;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    padding: 5px 15px;
+    margin-right: 5%;
+    border: 1px solid grey;
+    border-radius: 25px;
 }
 
 .logo-font {
-    color: white;
-    padding: 15px 0 0 15px;
-    font: bold 20px/100% "monospace, serif";
+    color: #000000;
+    padding: 5px 8px;
+    margin-left: 5%;
+    font-weight: bolder;
+    font-size: 20px;
+    border-radius: 5px;
+    background-color: #f5c519;
 }
 
 header input {
-    position: absolute;
-    right: 45px;
-    width: 200px;
-    height: 20px;
+    width: 250px;
+    height: 25px;
     border: 0;
     border-radius: 5px;
     outline: none;
-    top: 15px;
+    font-size: 15px;
+    color: #bbb;
+    background-color: transparent;
 }
 
 .icon-search {
-    position: absolute;
-    top: 15px;
-    right: 20px;
     width: 20px;
 }
 
@@ -117,9 +134,9 @@ header input {
     text-align: center;
 }
 
-a{
-  text-decoration: none;
-  color: black;
+a {
+    text-decoration: none;
+    color: black;
 }
 
 
@@ -127,7 +144,7 @@ a{
 
 .copyright-font {
     color: white;
-    font-size: 12px;
+    font-size: 14px;
     text-align: center;
     line-height: 50px;
 }
