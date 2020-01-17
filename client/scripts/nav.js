@@ -77,8 +77,8 @@ for (var i = 0; i < aCircle.length; i++) {
 
 function switchBanner() {
   let banner = document.getElementsByClassName('banner-img')[0];
-  banner.setAttribute('src', imgSrcArr[currentBannerIndex])
-  banner.setAttribute('douban-id', imgIdArr[currentBannerIndex])
+  banner.setAttribute('src', imgSrcArr[currentBannerIndex]);
+  banner.setAttribute('douban-id', imgIdArr[currentBannerIndex]);
 }
 
 function bannerIndexAddOne() {

@@ -1,22 +1,20 @@
 let classificationDb;
 let movieDb;
+let dataLoadedflag = false;
 let pastHighlightCatagoryBox;
 let movieListToRender;
 let movieRenderProgressIndex = 1;
 const movieRenderInterval = 20;
 
 
-initDb(fetchDataFromLocalStorage);
-renderAllCatagorys();
-movieListToRender = findMoviesIds(movieDb);
-renderMovieListInInterval(movieListToRender, movieRenderProgressIndex, movieRenderProgressIndex + movieRenderInterval - 1);
-
-function fetchDataFromLocalStorage() {
+initDb(() => {
   classificationDb = readDbClassification();
   movieDb = readOnServiceDb();
-}
-
-// let showId = ["1292052", "1295644", "1307914", "1291841", "1296141", "1299131", "1293350", "26580232", "1305487"];
+  renderAllCatagorys();
+  movieListToRender = findMoviesIds(movieDb);
+  renderMovieListInInterval(movieListToRender, movieRenderProgressIndex, movieRenderProgressIndex + movieRenderInterval - 1);
+  dataLoadedflag = true;
+});
 
 function onInterfaceClick(event) {
   const catagoryBox = 'catagory-box';
@@ -85,10 +83,10 @@ function sortCatagoryByMovieCount(catagoryObjList) {
   });
 }
 
-function onClickBannerImg(target){
+function onClickBannerImg(target) {
   let movieId = target.getAttribute("douban-id");
   const imgHrefPrefix = "../pages/detailPage.html?"
-  window.open(imgHrefPrefix+movieId, '_blank');
+  window.open(imgHrefPrefix + movieId, '_blank');
 }
 
 function removeMovies() {
@@ -190,16 +188,18 @@ function getScrollHeight() {
 
 
 window.onscroll = function () {
-  // console.log(getWindowHeight(), getDocumentTop(), getScrollHeight());
-  if (getScrollHeight() < getWindowHeight() + getDocumentTop() + 15) {
-    let loadmore = document.getElementsByClassName('loadmore')[0];
-    loadmore.innerHTML = '<span class="loading"></span>加载中..';
-    if (getScrollHeight() - 1 <= getWindowHeight() + getDocumentTop()) {
-      loadmore.innerHTML = ' ';
-      // if ((movieRenderProgressIndex + movieRenderInterval) < movieListToRender.length) {
-      movieRenderProgressIndex += movieRenderInterval;
-      renderMovieListInInterval(movieListToRender, movieRenderProgressIndex, movieRenderProgressIndex + movieRenderInterval - 1);
-      // }
+  if (dataLoadedflag) {
+    // console.log(getWindowHeight(), getDocumentTop(), getScrollHeight());
+    if (getScrollHeight() < getWindowHeight() + getDocumentTop() + 15) {
+      let loadmore = document.getElementsByClassName('loadmore')[0];
+      loadmore.innerHTML = '<span class="loading"></span>加载中..';
+      if (getScrollHeight() - 1 <= getWindowHeight() + getDocumentTop()) {
+        loadmore.innerHTML = ' ';
+        // if ((movieRenderProgressIndex + movieRenderInterval) < movieListToRender.length) {
+        movieRenderProgressIndex += movieRenderInterval;
+        renderMovieListInInterval(movieListToRender, movieRenderProgressIndex, movieRenderProgressIndex + movieRenderInterval - 1);
+        // }
+      }
     }
   }
 }
