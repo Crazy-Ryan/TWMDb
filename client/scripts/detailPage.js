@@ -105,9 +105,12 @@ function getMovieRecommendId(movieId) {
     let recommendData = classificationDb.filter(
         item => (item.name === data[0].genres[0])
     );
-    return recommendData[0].id.slice(0, 6);
-
+    let recommendMovieIdList = recommendData[0].id.filter(
+        item => (item.id !== movieId)
+    );
+    return recommendMovieIdList.slice(0, 6);
 }
+
 
 function getMovieRecommends() {
     let recommendMovieIdList = getMovieRecommendId(movieId);
