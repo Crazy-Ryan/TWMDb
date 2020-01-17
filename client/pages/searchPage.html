@@ -2,29 +2,32 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>SearchMovie</title>
-    <link rel="stylesheet" type="text/css" media="screen" href="../styles/searchPage.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>SearchMovie</title>
+  <link rel="stylesheet" type="text/css" media="screen" href="../styles/searchPage.css" />
 </head>
 
 <body>
-    <header>
-        <div class="logo-font">TWMDb</div>
-        <div class="search-box">
-            <input id="search-movie" type="search" name="search" placeholder="请输入电影名称" onkeydown="keyEnterSearchProject(event)" />
-            <img class="icon-search" src="../static/img/search.png" alt="search" onclick="searchProject()" />
-        </div>
-    </header>
-    <container>
-        <div class=" content ">
-        </div>
+  <header>
+    <a href="./index.html">
+      <div class="logo-font">TWMDb</div>
+    </a>
+    <div class="search-box">
+      <input id="search-movie" type="search" name="search" placeholder="请输入电影名称"
+        onkeydown="keyEnterSearchProject(event)" />
+      <img class="icon-search" src="../static/img/search.png" alt="search" onclick="searchProject()" />
+    </div>
+  </header>
+  <container>
+    <div class=" content ">
+    </div>
 
-    </container>
-    <footer>
-        <div class="copyright-font ">Copyright©2020 TWMDb.All Rights Reserved.</div>
-    </footer>
+  </container>
+  <footer>
+    <div class="copyright-font ">Copyright©2020 TWMDb.All Rights Reserved.</div>
+  </footer>
 </body>
 <script src="../scripts/db.js "></script>
 <script src="../scripts/searchPage.js "></script>
