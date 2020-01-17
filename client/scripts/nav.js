@@ -13,7 +13,7 @@ let imgSrcArr = ["../static/img/1.jpg",
   "../static/img/3.jpg",
   "../static/img/4.jpg",
   "../static/img/5.jpg"];
-
+let imgIdArr = [1851857, 1292213, 11525673, 26325320, 1293182];
 var timer;
 var num = 0;
 
@@ -78,6 +78,7 @@ for (var i = 0; i < aCircle.length; i++) {
 function switchBanner() {
   let banner = document.getElementsByClassName('banner-img')[0];
   banner.setAttribute('src', imgSrcArr[currentBannerIndex])
+  banner.setAttribute('douban-id', imgIdArr[currentBannerIndex])
 }
 
 function bannerIndexAddOne() {

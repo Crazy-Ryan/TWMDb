@@ -6,6 +6,7 @@
 
 body {
   height: 100%;
+  background-color: #C6C5C1;
 }
 
 /* header */
@@ -64,6 +65,10 @@ header input {
   position: relative;
   overflow: hidden;
   padding-bottom: 30%;
+}
+
+.posters a{
+  position: relative;
 }
 
 .posters img {
