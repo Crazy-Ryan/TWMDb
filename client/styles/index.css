@@ -18,13 +18,17 @@ header, footer {
   background-color: #121212;
 }
 
-header{
+header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.search-box{
+header a {
+  margin-left: 5%;
+}
+
+.search-box {
   display: flex;
   align-items: center;
   padding: 5px 15px;
@@ -36,13 +40,12 @@ header{
 .logo-font {
   color: #000000;
   padding: 5px 8px;
-  margin-left: 5%;
+  /* margin-left: 5%; */
   font-weight: bolder;
   font-size: 20px;
   border-radius: 5px;
   background-color: #f5c519;
 }
-
 
 header input {
   width: 250px;
@@ -127,7 +130,7 @@ header input {
   /* width: 20%;
   height: auto; */
   border-radius: 10px;
-  border: 3px solid rgba(0,0,0,0.2);
+  border: 3px solid rgba(0, 0, 0, 0.2);
 }
 
 .circle div a {
@@ -272,7 +275,7 @@ a {
   color: black;
 }
 
-.movie-title{
+.movie-title {
   color: #ccc;
 }
 
