@@ -1,11 +1,10 @@
-// window.onload = function() {
-var oContainer = document.getElementById('nav-container');
-var list = document.getElementsByClassName('posters')[0];
-var oPrev = document.getElementById('prev');
-var oNext = document.getElementById('next');
-var oCircle = document.getElementById('circle');
-var aCircle = oCircle.getElementsByTagName('div');
-var aP = oCircle.getElementsByTagName('p');
+let oContainer = document.getElementById('nav-container');
+let list = document.getElementsByClassName('posters')[0];
+let oPrev = document.getElementById('prev');
+let oNext = document.getElementById('next');
+let oCircle = document.getElementById('circle');
+let aCircle = oCircle.getElementsByTagName('div');
+let aP = oCircle.getElementsByTagName('p');
 
 let currentBannerIndex = 0;
 let imgSrcArr = ["../static/img/1.jpg",
@@ -14,12 +13,9 @@ let imgSrcArr = ["../static/img/1.jpg",
   "../static/img/4.jpg",
   "../static/img/5.jpg"];
 let imgIdArr = [1851857, 1292213, 11525673, 26325320, 1293182];
-var timer;
-var num = 0;
+let timer;
 
-//图片自动轮播
 function autoPlay() {
-  //设置定时器，每隔1.5s运行一次oNext.onclick
   timer = setInterval(function () {
     oNext.onclick();
   }, 1500);
@@ -29,44 +25,36 @@ function stopAutoPlay() {
   clearInterval(timer);
 }
 
-// 鼠标移入图片，清除定时器，移开，打开定时器
 oContainer.onmouseover = stopAutoPlay;
 oContainer.onmouseout = autoPlay;
 autoPlay();
 
-
-//设置小圆点
 function circleShow() {
-  //清除之前所有的样式
-  for (var i = 0; i < aCircle.length; i++) {
+  for (let i = 0; i < aCircle.length; i++) {
     aCircle[i].className = '';
   }
-  //把第一个下标为0的设置属性className
   aCircle[currentBannerIndex].className = 'on';
 }
 
-// //左右箭头切换图片，圆点样式也跟着移动
 oPrev.onclick = function () {
   bannerIndexMinusOne();
   circleShow();
   switchBanner();
 }
+
 oNext.onclick = function () {
   bannerIndexAddOne();
   circleShow();
   switchBanner();
 }
 
-for (var i = 0; i < aCircle.length; i++) {
+for (let i = 0; i < aCircle.length; i++) {
   aCircle[i].index = i;
-  //鼠标点击小圆点显示相应图片
   aCircle[i].onclick = function () {
-    //鼠标移动到小圆点的位置
     currentBannerIndex = this.index;
     switchBanner();
     circleShow();
   }
-  //鼠标移入小圆点显示相应图片
   aCircle[i].onmouseover = function () {
     aP[this.index].style.display = 'block';
   };
