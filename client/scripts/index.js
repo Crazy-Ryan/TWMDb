@@ -6,7 +6,6 @@ let movieListToRender;
 let movieRenderProgressIndex = 1;
 const movieRenderInterval = 20;
 
-
 initDb(() => {
   classificationDb = readDbClassification();
   movieDb = readOnServiceDb();
@@ -20,7 +19,7 @@ function onInterfaceClick(event) {
   const catagoryBox = 'catagory-box';
   const bannerImg = 'banner-img';
   let clickClass = event.target.getAttribute('class') || event.target.parentElement.getAttribute('class');
-  console.log(clickClass);
+
   switch (clickClass) {
     case catagoryBox:
       selectCatagoryHandle(findCatagoryBox(event.target));
@@ -59,10 +58,10 @@ function toggleHighlightCatagoryBox(target) {
 
 function findCatagoryBox(target) {
   let targetEl;
-  if (event.target.getAttribute('class')) {
-    targetEl = event.target;
+  if (target.getAttribute('class')) {
+    targetEl = target;
   } else {
-    targetEl = event.target.parentElement;
+    targetEl = target.parentElement;
   }
   return targetEl;
 }
@@ -74,7 +73,6 @@ function selectCatagoryHandle(catagoryBoxEl) {
   movieRenderProgressIndex = 1;
   movieListToRender = findMoviesOfCatagory(classificationDb, catagorySelected);
   renderMovieListInInterval(movieListToRender, movieRenderProgressIndex, movieRenderProgressIndex + movieRenderInterval - 1);
-  // window.scrollTo(0, 0);
 }
 
 function sortCatagoryByMovieCount(catagoryObjList) {
@@ -189,28 +187,23 @@ function getScrollHeight() {
 
 window.onscroll = function () {
   if (dataLoadedflag) {
-    // console.log(getWindowHeight(), getDocumentTop(), getScrollHeight());
     if (getScrollHeight() < getWindowHeight() + getDocumentTop() + 15) {
       let loadmore = document.getElementsByClassName('loadmore')[0];
       loadmore.innerHTML = '<span class="loading"></span>加载中..';
       if (getScrollHeight() - 1 <= getWindowHeight() + getDocumentTop()) {
         loadmore.innerHTML = ' ';
-        // if ((movieRenderProgressIndex + movieRenderInterval) < movieListToRender.length) {
         movieRenderProgressIndex += movieRenderInterval;
         renderMovieListInInterval(movieListToRender, movieRenderProgressIndex, movieRenderProgressIndex + movieRenderInterval - 1);
-        // }
       }
     }
   }
 }
-
 
 function keyEnterSearchProject() {
   if (13 == event.keyCode) {
     searchProject();
   }
 }
-
 
 function searchProject() {
   let inputValue = document.getElementById("search-movie").value;
