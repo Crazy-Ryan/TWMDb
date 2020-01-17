@@ -50,10 +50,12 @@ function highlightCatagoryBox(target) {
 }
 
 function toggleHighlightCatagoryBox(target) {
-  if ('darkcyan' === target.style.backgroundColor) {
+  if ('grey' === target.style.backgroundColor) {
     target.style.backgroundColor = 'transparent';
+    target.style.color = 'white';
   } else {
-    target.style.backgroundColor = 'darkcyan';
+    target.style.backgroundColor = 'grey';
+    target.style.color = 'black';
   }
 }
 
