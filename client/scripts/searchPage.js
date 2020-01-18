@@ -8,7 +8,7 @@ function fetchDataFromLocalStorage() {
 
 function searchProject(data) {
     let inputValue = document.getElementById("search-movie").value || data;
-    inputValue = (inputValue === undefined) ? '' : inputValue;
+    inputValue = (inputValue === undefined) ? ' ' : inputValue;
     content.innerHTML = `<h2>搜索：${inputValue}</h2>`;
     let searchMovieId = itemSearch(movieDb, inputValue);
     let searchMovie = movieSearch(searchMovieId);
