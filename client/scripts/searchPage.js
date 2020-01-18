@@ -3,17 +3,18 @@ let content = document.getElementsByClassName('content')[0];
 let inputToSearch = decodeURI(window.location.search.slice(1));
 
 function fetchDataFromLocalStorage() {
-  movieDb = readOnServiceDb();
+    movieDb = readOnServiceDb();
 }
 
 function searchProject(data) {
-  let inputValue = document.getElementById("search-movie").value || data;
-  content.innerHTML = `<h2>搜索：${inputValue}</h2>`;
-  let searchMovieId = itemSearch(movieDb, inputValue);
-  let searchMovie = movieSearch(searchMovieId);
-  if (inputValue && searchMovie.length !== 0) {
-    searchMovie.forEach(item => {
-      content.innerHTML += `<div class="searchResult">
+    let inputValue = document.getElementById("search-movie").value || data;
+    inputValue = (inputValue === undefined) ? '' : inputValue;
+    content.innerHTML = `<h2>搜索：${inputValue}</h2>`;
+    let searchMovieId = itemSearch(movieDb, inputValue);
+    let searchMovie = movieSearch(searchMovieId);
+    if (inputValue && searchMovie.length !== 0) {
+        searchMovie.forEach(item => {
+            content.innerHTML += `<div class="searchResult">
             <div class="picAndDetail">
             <a href="../pages/detailPage.html?${item.id}" target="_blank"><img src="${item.images.small}" /></a>
             <div class="movie-details">
@@ -23,21 +24,21 @@ function searchProject(data) {
             <p>类型：${item.genres.join(',')}</p>
             <p>评分：${item.rating.average}</p>
       </div></div></div>`;
-    });
-  } else {
-    content.innerHTML += `<div class="searchResult">没有找到关于"${inputValue}"的电影，换个搜索词试试吧~</div>`;
-  }
+        });
+    } else {
+        content.innerHTML += `<div class="searchResult">没有找到关于"${inputValue}"的电影，换个搜索词试试吧~</div>`;
+    }
 }
 
 function keyEnterSearchProject(event) {
-  if (13 == event.keyCode) {
-    searchProject();
-  }
+    if (13 == event.keyCode) {
+        searchProject();
+    }
 }
 
 function movieSearch(searchMovieId) {
-  let res = movieDb.filter(movie => (searchMovieId.indexOf(movie.id) !== -1));
-  return res;
+    let res = movieDb.filter(movie => (searchMovieId.indexOf(movie.id) !== -1));
+    return res;
 }
 
 initDb(fetchDataFromLocalStorage);
